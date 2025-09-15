@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: fcade21e65962e1489dfa16fb1b07730
+  productGUID: 291c2b3f786c87d428b24a64458a3872
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -273,6 +273,9 @@ PlayerSettings:
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
+  androidAppCategory: 3
+  useAndroidAppCategory: 1
+  androidAppCategoryOther: 
   AndroidEnableTango: 0
   androidEnableBanner: 1
   androidUseLowAccuracyLocation: 0
@@ -916,11 +919,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: cb089db7-f419-4e09-814b-616c19969edf
+  cloudProjectId: 1467d10a-a250-441e-87c4-f244b789c458
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Zefiro
-  organizationId: gonza_piacen
+  projectName: Zefiro 2025-09-13_10-24-43
+  organizationId: lemejulian
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
