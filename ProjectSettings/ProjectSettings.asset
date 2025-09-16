@@ -273,9 +273,6 @@ PlayerSettings:
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
-  androidAppCategory: 3
-  useAndroidAppCategory: 1
-  androidAppCategoryOther: 
   AndroidEnableTango: 0
   androidEnableBanner: 1
   androidUseLowAccuracyLocation: 0
@@ -919,11 +916,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 1467d10a-a250-441e-87c4-f244b789c458
+  cloudProjectId: cb089db7-f419-4e09-814b-616c19969edf
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Zefiro 2025-09-13_10-24-43
-  organizationId: lemejulian
+  projectName: Zefiro
+  organizationId: gonza_piacen
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
