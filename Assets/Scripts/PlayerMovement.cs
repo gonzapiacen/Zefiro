@@ -10,25 +10,24 @@ public class PlayerMovement : MonoBehaviour
     private float _camRayLength = 100f;
     private float _horz = 0f;
     private float _vert = 0f;
-    
-    Ray _camRay;
-
-    RaycastHit _floorHit;
-    Vector3 _playerToMouse;
 
     void Awake()
     {
         _playerRigidbody = GetComponent<Rigidbody>();
     }
 
+    void LateUpdate()
+    {
+        Turning();
+    }
+
 
     void FixedUpdate()
     {
-            _horz = Input.GetAxis("Horizontal");
-            _vert = Input.GetAxis("Vertical");
+        _horz = Input.GetAxis("Horizontal");
+        _vert = Input.GetAxis("Vertical");
 
-            Move();
-            Turning();
+        Move();
     }
 
 
@@ -36,31 +35,20 @@ public class PlayerMovement : MonoBehaviour
     {
         _movement.Set(_horz, 0f, _vert);
 
-        _movement = _movement.normalized * _speed * Time.deltaTime;
+        //multiply with rotation to move in the faced direction
+        _movement = transform.rotation * _movement.normalized * _speed * Time.deltaTime;
 
+        //apply the movement via RigidBody
         _playerRigidbody.MovePosition(transform.position + _movement);
     }
 
     void Turning()
     {
-        _camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Quaternion currentRotation = transform.rotation;
 
+        float cameraY = Camera.main.transform.eulerAngles.y;
 
-
-        Debug.DrawLine(_camRay.origin, _camRay.direction, Color.red);
-
-        if (Physics.Raycast(_camRay, out _floorHit, _camRayLength, _floorMask))
-        {
-            _playerToMouse = _floorHit.point - transform.position;
-
-            _playerToMouse.y = 0f;
-
-            Quaternion newRotation = Quaternion.LookRotation(_playerToMouse, Vector3.up);
-
-            _playerRigidbody.MoveRotation(newRotation);
-
-
-        }
+        transform.rotation = Quaternion.Euler(currentRotation.eulerAngles.x, cameraY, currentRotation.eulerAngles.z);
     }
 
 }

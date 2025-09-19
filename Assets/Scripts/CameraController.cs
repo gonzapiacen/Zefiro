@@ -2,25 +2,47 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform target;                        // The position that the camera will be following                    
-    public float smoothing = 5f;                    // The speed with which the camera will be folowing
-    Vector3 offset;                                 // The initial offset from the target
+    [SerializeField] Transform target;              // The object the camera follows
+    [SerializeField] float smoothing = 5f;          // Position smoothing speed
+    [SerializeField] float rotationSpeed = 5f;      // Mouse sensitivity
+    [SerializeField] float verticalClamp = 80f;     // Clamp for vertical rotation
 
+    private Vector3 offset;               // Initial offset from target
+    private float yaw = 0f;               // Horizontal rotation
+    private float pitch = 0f;             // Vertical rotation
 
-    // Start is called before the first frame update
     void Start()
     {
-        //Calculate the initial offset
         offset = transform.position - target.position;
+        Cursor.lockState = CursorLockMode.Locked; // Locks cursor for immersive control
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        // Create a position the camera is aiming for based on the offset from the target
-        Vector3 targetCamPos = target.position + offset;
+        // Mouse inputs
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
 
-        // Smoothly interpolate between the camera's current position and it's target position
-        transform.position = Vector3.Lerp(transform.position, targetCamPos, smoothing * Time.deltaTime);
-        
+        // Accumulate rotation values
+        yaw += mouseX * rotationSpeed;
+        pitch -= mouseY * rotationSpeed;
+        pitch = Mathf.Clamp(pitch, -verticalClamp, verticalClamp);
     }
+
+    void LateUpdate()
+    {
+        // Calculate rotation from pitch and yaw
+        Quaternion rotation = Quaternion.Euler(pitch, yaw, 0);
+
+        // Apply rotation to offset
+        Vector3 rotatedOffset = rotation * offset;
+
+        // Smoothly interpolate camera position
+        Vector3 targetCamPos = target.position + rotatedOffset;
+        transform.position = Vector3.Lerp(transform.position, targetCamPos, smoothing * Time.deltaTime);
+
+        // Always look at the target
+        transform.LookAt(target.position);
+    }
+
 }
