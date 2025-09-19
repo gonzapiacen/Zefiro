@@ -3,6 +3,9 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class Playermove : MonoBehaviour
 {
+    public static Playermove instance;
+
+
     [Header("Movement")]
     public float walkSpeed = 5f;
     public bool enableTranslation = true;
@@ -24,9 +27,17 @@ public class Playermove : MonoBehaviour
     private float yaw = 0f;
     private Vector3 cameraVelocity = Vector3.zero;
 
-    // jump state
     private int jumpCount = 0;
-    private float verticalVelocity = 0f;
+    [HideInInspector] public float verticalVelocity = 0f;
+
+
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    
 
     void Start()
     {
