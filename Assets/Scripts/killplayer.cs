@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class killplayer : MonoBehaviour
+public class KillPlayer : MonoBehaviour
 {
   private void OnTriggerEnter(Collider other)
 {
