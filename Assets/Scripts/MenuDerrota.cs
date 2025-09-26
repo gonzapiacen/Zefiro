@@ -1,20 +1,28 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuDerrota : MonoBehaviour
 {
     public GameObject opcionesMenu;
     public GameObject mainMenu;
-
-    public void QuitGame()
+void Start()
     {
-        Application.Quit();
-        Debug.Log("Salir del juego");
+        
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
-    public void  PlayGame()
+    
+    public void JugarDeNuevo()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("level1");
-    } 
+        SceneManager.LoadScene("level1"); 
+    }
 
+    public void Salir()
+    {
+        Application.Quit();
+    
+    }
 }
+
  
