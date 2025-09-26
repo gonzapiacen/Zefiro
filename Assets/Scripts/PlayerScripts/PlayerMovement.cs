@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] float _speed = 6f;
+    [SerializeField] float _speed;
 
     [Header("Jumping")]
     [SerializeField] int _jumpCount;
@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         _playerRigidbody = GetComponent<Rigidbody>();
-        _speed = 30f;
+        _speed = 10f;
         _jumpCount = 2;
         _jumpForce = 5f;
     }
@@ -28,10 +28,6 @@ public class PlayerMovement : MonoBehaviour
 
         Move();
         Jump();
-    }
-
-    void LateUpdate()
-    {
         Turning();
     }
 
@@ -49,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Run()
     {
-        _speed = Input.GetKey(KeyCode.LeftShift) ? 50f : 30f;
+        _speed = Input.GetKey(KeyCode.LeftShift) ? 15 : 10f;
     }
 
     public void Turning()

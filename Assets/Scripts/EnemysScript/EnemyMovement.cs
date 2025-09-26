@@ -27,7 +27,10 @@ public class EnemyMovement : MonoBehaviour
 
         if (enemyHealth.Health > 0 && playerHealth.Health > 0)
         {
-            _agent.SetDestination(_target.transform.position);
+            if (Vector3.Distance(gameObject.transform.position, _target.transform.position) < 20f && Vector3.Distance(gameObject.transform.position, _target.transform.position) > 2f)
+            {
+                _agent.SetDestination(_target.transform.position);
+            }
         }
         else
         {
@@ -35,4 +38,5 @@ public class EnemyMovement : MonoBehaviour
             animator.SetBool("IsIdle", true);
         }
     }
+
 }
